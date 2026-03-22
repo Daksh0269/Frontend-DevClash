@@ -4,10 +4,27 @@ import Card from '../components/Card';
 import Button from '../components/Button';
 
 const syllabus = {
-  Physics: ['Kinematics', 'Laws of Motion', 'Rotational Motion', 'Thermodynamics', 'Electromagnetism'],
-  Chemistry: ['Atomic Structure', 'Chemical Bonding', 'Organic Chemistry', 'Equilibrium'],
-  Mathematics: ['Calculus', 'Algebra', 'Coordinate Geometry', 'Vectors & 3D'],
-  Biology: ['Human Physiology', 'Plant Physiology', 'Genetics', 'Cell Biology']
+  Physics: [
+    'Units and Measurements', 'Motion in One Dimension', 'Motion in Two Dimensions', 
+    'Laws of Motion', 'Work, Power, Energy', 'Center of Mass', 'Gravitation', 
+    'Properties of Solids', 'Properties of Fluids', 'Ray Optics', 'Dual Nature of Radiation'
+  ],
+  Chemistry: [
+    'Some Basic Concepts of Chemistry', 'Structure of Atom', 'Thermodynamics (C)', 
+    'Ionic Equilibrium', 'Redox Reactions', 'Classification of Elements and Periodicity in Properties', 
+    'p Block Elements (Group 15, 16, 17 & 18)', 'd and f Block Elements', 'Coordination Compounds', 
+    'General Organic Chemistry', 'Aldehydes and Ketones', 'Carboxylic Acid Derivatives', 
+    'Amines', 'Biomolecules'
+  ],
+  Mathematics: [
+    'Quadratic Equation', 'Complex Number', 'Sequences and Series', 'Permutation Combination', 
+    'Binomial Theorem', 'Statistics', 'Matrices', 'Determinants', 'Probability', 'Sets and Relations', 
+    'Functions', 'Limits', 'Continuity and Differentiability', 'Differentiation', 
+    'Application of Derivatives', 'Indefinite Integration', 'Definite Integration', 
+    'Area Under Curves', 'Differential Equations', 'Straight Lines', 'Circle', 'Parabola', 
+    'Ellipse', 'Hyperbola', 'Trigonometric Ratios & Identities', 'Trigonometric Equations', 
+    'Inverse Trigonometric Functions', 'Three Dimensional Geometry'
+  ]
 };
 
 export default function Dashboard() {

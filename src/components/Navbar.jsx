@@ -56,6 +56,14 @@ export default function Navbar({ user }) {
                 >
                   Neural Matrix
                 </Link>
+                <Link 
+  to="/focus" 
+  className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+    isActive('/focus') ? 'bg-white/10 text-white shadow-md' : 'text-slate-400 hover:text-white'
+  }`}
+>
+  Focus Player
+</Link>
               </div>
 
               {/* User Actions */}

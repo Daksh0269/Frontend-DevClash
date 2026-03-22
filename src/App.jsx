@@ -10,7 +10,7 @@ import QuizAnalyzer from './pages/QuizAnalysis';
 import NtaQuizView from './pages/NTAQuizView';
 import Dashboard from './pages/Dashboard';
 import RevisionDashboard from './pages/RevisionDashboard';
-
+import VideoVault from './pages/videoVault';
 // Components
 import Navbar from './components/Navbar';
 
@@ -37,8 +37,7 @@ function App() {
 
   return (
    <Router>
-      {/* Removed the {user && ...} condition so it ALWAYS shows up */}
-      <Navbar />
+      <Navbar user={user} />
       
       <div className="min-h-screen bg-[#0a0f1c] text-slate-200">
         <Routes>
@@ -49,6 +48,7 @@ function App() {
           <Route path="/mock-test" element={user ? <NtaQuizView /> : <Navigate to="/" />} />
           <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/" />} />
           <Route path="/progress" element={user ? <RevisionDashboard /> : <Navigate to="/" />} />
+          <Route path="/vault" element={user ?  <VideoVault/>: <Navigate to="/" />} />
         </Routes>
       </div>
     </Router>
