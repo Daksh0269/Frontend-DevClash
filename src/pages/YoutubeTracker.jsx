@@ -67,7 +67,7 @@ export default function YoutubeTracker() {
         
         {/* Header & Input */}
         <div className="text-center md:text-left border-b border-white/5 pb-8">
-          <h1 className="text-4xl font-black text-white mb-2">Zen Focus Player</h1>
+          <h1 className="text-4xl font-black text-white mb-2">Focus Player</h1>
           <p className="text-slate-400 mb-6 text-lg">Watch external lectures without algorithm distractions. Progress is saved to your Vault.</p>
           
           <div className="flex flex-col sm:flex-row gap-4 max-w-3xl">
@@ -113,7 +113,7 @@ export default function YoutubeTracker() {
                 height="100%" 
                 // rel=0 prevents showing random channels at the end, modestbranding removes the YT logo
                 src={`https://www.youtube.com/embed/${activeVideo.id}?autoplay=1&rel=0&modestbranding=1`} 
-                title="Zen Focus Player" 
+                title="Focus Player" 
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowFullScreen

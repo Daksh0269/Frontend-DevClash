@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+@layer utilities {
+  .text-neon-green {
+    color: #10b981;
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+  }
+  
+  .bg-glass-black {
+    background: rgba(10, 15, 28, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(16, 185, 129, 0.1);
+  }
+
+  .btn-emerald {
+    @apply bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-4 rounded-lg 
+           transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.2)];
+  }
+}

@@ -1,16 +1,14 @@
-import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { account } from '../appwrite/config';
 
-// ⚡ Accept the 'user' prop here
 export default function Navbar({ user }) {
   const location = useLocation();
-  const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
       await account.deleteSession('current');
-      // A quick hackathon trick: force a hard reload on logout to instantly clear all React state
       window.location.href = '/'; 
     } catch (error) {
       console.error("Logout failed", error);
@@ -19,68 +17,113 @@ export default function Navbar({ user }) {
 
   const isActive = (path) => location.pathname === path;
 
+  // Updated User-Friendly Names
+  const navLinks = [
+    { name: 'Practice Tests', path: '/dashboard' },
+    { name: 'Study Tracker', path: '/progress' },
+    { name: 'Video Lectures', path: '/vault' },
+    { name: 'Study Mode', path: '/focus' },
+  ];
+
   return (
-    <nav className="sticky top-0 z-50 w-full bg-[#0a0f1c]/80 backdrop-blur-xl border-b border-white/5">
+    <nav className="sticky top-0 z-50 bg-[#05070a]/90 backdrop-blur-xl border-b border-emerald-500/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.8)]">
+      {/* Subtle top accent line */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent"></div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           
-          {/* Logo Section - Always visible */}
-          <div 
-            className="flex items-center gap-2 cursor-pointer" 
-            onClick={() => navigate(user ? '/dashboard' : '/')}
-          >
-            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(37,99,235,0.5)]">
-              <span className="text-white font-black text-xl">D</span>
-            </div>
-            <span className="text-xl font-black text-white tracking-tight">Dev<span className="text-blue-500">Clash</span></span>
+          {/* Brand Logo */}
+          <div className="flex items-center">
+            <Link to="/" className="flex items-center gap-3 group">
+              <div className="w-10 h-10 bg-black border border-emerald-500/50 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.2)] group-hover:border-emerald-400 transition-all duration-500">
+                <span className="text-emerald-500 font-black text-2xl group-hover:text-emerald-300">D</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xl font-black tracking-widest text-white leading-none">
+                  DEV<span className="text-emerald-500">CLASH</span>
+                </span>
+                <span className="text-[10px] text-emerald-500/60 font-bold tracking-[0.2em] uppercase">Academic OS</span>
+              </div>
+            </Link>
           </div>
 
-          {/* ⚡ ONLY render these center and right sections if 'user' exists */}
+          {/* Desktop Navigation - Minimalist Tabs */}
           {user && (
-            <>
-              {/* Navigation Links */}
-              <div className="hidden md:flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/5">
-                <Link 
-                  to="/dashboard" 
-                  className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
-                    isActive('/dashboard') ? 'bg-white/10 text-white shadow-md' : 'text-slate-400 hover:text-white'
+            <div className="hidden md:flex items-center gap-2 bg-black/60 p-1.5 rounded-2xl border border-white/5">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`px-5 py-2.5 rounded-xl font-bold text-[11px] uppercase tracking-widest transition-all duration-500 ${
+                    isActive(link.path)
+                      ? 'bg-emerald-500 text-black shadow-[0_0_25px_rgba(16,185,129,0.3)]'
+                      : 'text-slate-500 hover:text-emerald-400 hover:bg-emerald-500/5'
                   }`}
                 >
-                  Test Generator
+                  {link.name}
                 </Link>
-                <Link 
-                  to="/progress" 
-                  className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
-                    isActive('/progress') ? 'bg-white/10 text-white shadow-md' : 'text-slate-400 hover:text-white'
-                  }`}
-                >
-                  Neural Matrix
-                </Link>
-                <Link 
-  to="/focus" 
-  className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
-    isActive('/focus') ? 'bg-white/10 text-white shadow-md' : 'text-slate-400 hover:text-white'
-  }`}
->
-  Focus Player
-</Link>
-              </div>
+              ))}
+            </div>
+          )}
 
-              {/* User Actions */}
-              <div className="flex items-center gap-4">
-                <div className="hidden md:block w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 to-emerald-500 border-2 border-[#0a0f1c] shadow-sm"></div>
-                <button 
+          {/* User Section */}
+          <div className="flex items-center gap-6">
+            {user ? (
+              <div className="flex items-center gap-5">
+                <div className="hidden lg:flex flex-col items-end">
+                  <span className="text-[9px] text-emerald-500 font-black uppercase tracking-widest opacity-80">Online</span>
+                  <span className="text-sm text-slate-200 font-bold">{user.name.split(' ')[0]}</span>
+                </div>
+                <button
                   onClick={handleLogout}
-                  className="text-sm font-bold text-slate-400 hover:text-red-400 transition-colors"
+                  className="group relative px-4 py-2 bg-transparent overflow-hidden"
                 >
-                  Logout
+                  <span className="relative z-10 text-[11px] font-black text-slate-400 group-hover:text-red-400 transition-colors tracking-widest uppercase">
+                    Exit
+                  </span>
+                  <div className="absolute bottom-0 left-0 w-full h-[1px] bg-red-500/0 group-hover:bg-red-500/50 transition-all duration-300"></div>
                 </button>
               </div>
-            </>
-          )}
-          
+            ) : (
+              <Link 
+                to="/" 
+                className="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-2.5 rounded-xl text-xs font-black tracking-widest shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-all"
+              >
+                ACCESS PORTAL
+              </Link>
+            )}
+
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden p-2 text-emerald-500 hover:bg-emerald-500/10 rounded-lg transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Mobile Menu - Obsidian Dropdown */}
+      {isMobileMenuOpen && user && (
+        <div className="md:hidden bg-[#05070a] border-b border-emerald-500/20 px-4 py-6 space-y-3 animate-in fade-in slide-in-from-top-4">
+          {navLinks.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`block px-5 py-4 rounded-xl font-bold text-sm tracking-widest uppercase ${
+                isActive(link.path) ? 'bg-emerald-500 text-black' : 'text-slate-400 bg-white/5'
+              }`}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }
