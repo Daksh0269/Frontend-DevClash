@@ -11,7 +11,6 @@ import NtaQuizView from './pages/NTAQuizView';
 import Dashboard from './pages/Dashboard';
 import RevisionDashboard from './pages/RevisionDashboard';
 import VideoVault from './pages/videoVault';
-import YoutubeTracker from './pages/youtubeTracker';
 import DailyReview from './pages/DailyReview';
 
 // Components

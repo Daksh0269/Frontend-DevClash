@@ -41,44 +41,43 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-80px)] bg-[#0a0f1c] p-6 md:p-12 text-slate-200 selection:bg-blue-500/30">
+    <div className="min-h-[calc(100vh-80px)] bg-[#05070a] p-6 md:p-12 text-slate-200 selection:bg-emerald-500/30">
       <div className="max-w-5xl mx-auto">
         
         {/* Page Header */}
-        <div className="mb-12 border-b border-white/5 pb-6">
-          <h1 className="text-4xl md:text-5xl font-black text-white mb-3 tracking-tight">Configure Session</h1>
-          <p className="text-slate-400 text-lg">Select your target area. The AI will track your weak concepts.</p>
+        <div className="mb-12 border-b border-emerald-500/10 pb-8">
+          <h1 className="text-4xl md:text-5xl font-black text-white mb-3 tracking-tight">
+            Practice <span className="text-emerald-500">Tests</span>
+          </h1>
+          <p className="text-slate-500 text-lg font-medium">Configure your session. Our engine adapts to your performance.</p>
         </div>
 
         {/* --- SECTION 1: SUBJECTS --- */}
         <div className="mb-12">
-          {/* ⚡ Fixed Header Spacing */}
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.4)] border border-blue-400/30">
-              <span className="text-white font-black text-lg">1</span>
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-10 h-10 rounded-xl bg-black border border-emerald-500/50 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+              <span className="text-emerald-500 font-black text-lg font-mono">01</span>
             </div>
-            <h2 className="text-2xl font-bold text-white tracking-wide">Select Subject</h2>
+            <h2 className="text-2xl font-bold text-white tracking-wide uppercase text-sm tracking-[0.2em]">Select Subject</h2>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {Object.keys(syllabus).map(subject => (
               <div 
                 key={subject}
                 onClick={() => { setSelectedSubject(subject); setSelectedChapter(null); }}
                 className="cursor-pointer transition-all duration-300 transform active:scale-95"
               >
-                <Card 
-                  hoverEffect={!selectedSubject || selectedSubject !== subject}
-                  className={`h-full flex items-center justify-center text-center p-6 border-2 ${
+                <div className={`h-full flex items-center justify-center text-center p-8 rounded-2xl border-2 transition-all duration-500 ${
                     selectedSubject === subject 
-                      ? 'border-blue-500 bg-blue-600/10 shadow-[0_0_30px_rgba(37,99,235,0.2)]' 
-                      : 'border-white/5'
+                      ? 'border-emerald-500 bg-emerald-500/10 shadow-[0_0_40px_rgba(16,185,129,0.1)]' 
+                      : 'border-white/5 bg-white/[0.02] hover:border-emerald-500/30 hover:bg-white/[0.04]'
                   }`}
                 >
-                  <span className={`text-xl font-bold ${selectedSubject === subject ? 'text-blue-400' : 'text-slate-300'}`}>
+                  <span className={`text-xl font-black tracking-widest uppercase ${selectedSubject === subject ? 'text-emerald-400' : 'text-slate-500'}`}>
                     {subject}
                   </span>
-                </Card>
+                </div>
               </div>
             ))}
           </div>
@@ -86,12 +85,12 @@ export default function Dashboard() {
 
         {/* --- SECTION 2: CHAPTERS --- */}
         {selectedSubject && (
-          <div className="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.4)] border border-emerald-400/30">
-                <span className="text-white font-black text-lg">2</span>
+          <div className="mb-12 animate-in fade-in slide-in-from-bottom-6 duration-700">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-10 h-10 rounded-xl bg-black border border-emerald-500/50 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+                <span className="text-emerald-500 font-black text-lg font-mono">02</span>
               </div>
-              <h2 className="text-2xl font-bold text-white tracking-wide">Select Chapter</h2>
+              <h2 className="text-2xl font-bold text-white tracking-wide uppercase text-sm tracking-[0.2em]">Select Concept</h2>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -101,18 +100,16 @@ export default function Dashboard() {
                   onClick={() => setSelectedChapter(chapter)}
                   className="cursor-pointer transition-all duration-300 transform active:scale-95"
                 >
-                  <Card 
-                    hoverEffect={!selectedChapter || selectedChapter !== chapter}
-                    className={`h-full flex items-center justify-center text-center p-5 border-2 ${
+                  <div className={`h-full flex items-center justify-center text-center p-5 rounded-xl border transition-all duration-300 ${
                       selectedChapter === chapter 
-                        ? 'border-emerald-500 bg-emerald-600/10 shadow-[0_0_30px_rgba(16,185,129,0.15)]' 
-                        : 'border-white/5'
+                        ? 'border-emerald-500 bg-emerald-500/10 shadow-[0_0_25px_rgba(16,185,129,0.1)]' 
+                        : 'border-white/5 bg-white/[0.01] hover:border-white/20'
                     }`}
                   >
-                    <span className={`text-lg font-semibold ${selectedChapter === chapter ? 'text-emerald-400' : 'text-slate-300'}`}>
+                    <span className={`text-sm font-bold tracking-tight ${selectedChapter === chapter ? 'text-emerald-400' : 'text-slate-400'}`}>
                       {chapter}
                     </span>
-                  </Card>
+                  </div>
                 </div>
               ))}
             </div>
@@ -121,36 +118,42 @@ export default function Dashboard() {
 
         {/* --- SECTION 3: LAUNCH PAD --- */}
         {selectedChapter && (
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.4)] border border-amber-400/30">
-                <span className="text-white font-black text-lg">3</span>
+          <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-10 h-10 rounded-xl bg-black border border-emerald-500/50 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+                <span className="text-emerald-500 font-black text-lg font-mono">03</span>
               </div>
-              <h2 className="text-2xl font-bold text-white tracking-wide">Session Length</h2>
+              <h2 className="text-2xl font-bold text-white tracking-wide uppercase text-sm tracking-[0.2em]">Session Duration</h2>
             </div>
             
-            <Card className="border-white/10 p-8 bg-black/20">
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+            <div className="bg-[#0a0c10] border border-white/5 rounded-3xl p-8 shadow-2xl">
+              <div className="flex flex-col sm:flex-row gap-4 mb-10">
                 {[10, 15, 30].map(count => (
-                  <Button
+                  <button
                     key={count}
-                    variant={questionCount === count ? 'primary' : 'outline'}
                     onClick={() => setQuestionCount(count)}
-                    className="flex-1 py-4 text-lg"
+                    className={`flex-1 py-4 rounded-2xl font-black text-sm tracking-widest transition-all duration-300 border-2 ${
+                      questionCount === count 
+                        ? 'bg-emerald-500 border-emerald-500 text-black shadow-[0_0_30px_rgba(16,185,129,0.3)]' 
+                        : 'border-white/5 text-slate-500 hover:border-white/20'
+                    }`}
                   >
-                    {count} Questions
-                  </Button>
+                    {count} QUESTIONS
+                  </button>
                 ))}
               </div>
 
-              <Button 
-                variant="success" 
-                className="w-full py-5 text-xl tracking-widest uppercase font-black"
+              <button 
+                className="w-full py-6 rounded-2xl text-xl tracking-[0.3em] uppercase font-black bg-white text-black hover:bg-emerald-500 transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.5)] active:scale-[0.98]"
                 onClick={handleStartTest}
               >
-                Initialize NTA Simulator 🚀
-              </Button>
-            </Card>
+                Start Practice Session
+              </button>
+              
+              <p className="text-center mt-6 text-[10px] text-slate-600 uppercase tracking-[0.4em]">
+                System Ready • Neural Engine Active
+              </p>
+            </div>
           </div>
         )}
       </div>
