@@ -105,10 +105,11 @@ export default function RevisionDashboard() {
               New Mock Test
             </button>
             <button 
-              className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-lg font-bold shadow-[0_0_20px_rgba(37,99,235,0.4)] transition-all"
-            >
-              Start Daily Review ⚡
-            </button>
+  onClick={() => navigate('/daily-review')} // ⚡ ADD THIS LINE
+  className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-lg font-bold shadow-[0_0_20px_rgba(37,99,235,0.4)] transition-all"
+>
+  Start Daily Review ⚡
+</button>
           </div>
         </div>
 

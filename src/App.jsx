@@ -12,6 +12,7 @@ import Dashboard from './pages/Dashboard';
 import RevisionDashboard from './pages/RevisionDashboard';
 import VideoVault from './pages/videoVault';
 import YoutubeTracker from './pages/youtubeTracker';
+import DailyReview from './pages/DailyReview';
 
 // Components
 import Navbar from './components/Navbar';
@@ -55,6 +56,7 @@ function App() {
           {/* ⚡ FIXED: Added routes for the new features */}
           <Route path="/vault" element={user ?  <VideoVault/>: <Navigate to="/" />} />
           <Route path="/focus" element={user ?  <YoutubeTracker/>: <Navigate to="/" />} />
+          <Route path="/daily-review" element={user ? <DailyReview /> : <Navigate to="/" />} />
         </Routes>
       </div>
     </Router>
