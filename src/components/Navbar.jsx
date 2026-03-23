@@ -23,7 +23,6 @@ export default function Navbar({ user }) {
     { name: 'Study Tracker', path: '/progress' },
     { name: 'Video Lectures', path: '/vault' },
     { name: 'Study Mode', path: '/focus' },
-    {name: 'ai-MindMap',path:'/graph'}
   ];
 
   return (
