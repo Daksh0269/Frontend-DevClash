@@ -12,7 +12,7 @@ import Dashboard from './pages/Dashboard';
 import RevisionDashboard from './pages/RevisionDashboard';
 import VideoVault from './pages/videoVault';
 import DailyReview from './pages/DailyDetail';
-
+import AITutor from './pages/AITutor';
 // Components
 import Navbar from './components/Navbar';
 
@@ -54,8 +54,8 @@ function App() {
           
           {/* ⚡ FIXED: Added routes for the new features */}
           <Route path="/vault" element={user ?  <VideoVault/>: <Navigate to="/" />} />
-          <Route path="/focus" element={user ?  <YoutubeTracker/>: <Navigate to="/" />} />
           <Route path="/daily-review" element={user ? <DailyReview /> : <Navigate to="/" />} />
+          <Route path="/tutor" element={user ? <AITutor user={user} /> : <Navigate to="/" />} />
         </Routes>
       </div>
     </Router>
